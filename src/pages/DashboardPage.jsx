@@ -9,19 +9,17 @@ function DashboardPage() {
   const navigate = useNavigate();
   const [usersData, setUsersData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [uniqueNationalities, setUniqueNationalities] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-       
-        const response = await axios.get('https://l2um9p5p9h.execute-api.eu-west-2.amazonaws.com/user-data/userdata'); // replace with your user data api endpoint
+        const response = await axios.get(
+          'https://l2um9p5p9h.execute-api.eu-west-2.amazonaws.com/user-data/userdata'
+        ); // replace with your user data api endpoint
         const data = response.data;
-        
+
         const usersArray = data.body.split('\\').map((entry) => {
-          console.log("RESPONSE");
-          
-          // console.log(usersArray);
-          
           const [username, nationality, lastLogin] = entry.split(', ');
           return {
             username: username.split(': ')[1],
@@ -29,7 +27,14 @@ function DashboardPage() {
             lastLogin: lastLogin.split(': ')[1],
           };
         });
+
         setUsersData(usersArray);
+
+        const nationalitiesSet = new Set(
+          usersArray.map((user) => user.nationality.trim().toLowerCase())
+        );
+        setUniqueNationalities(nationalitiesSet.size);
+        
         setLoading(false);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -89,7 +94,13 @@ function DashboardPage() {
 
       <div className="p-4">
         <h1 className="text-xl font-semibold mb-4">Welcome, {user ? user.name : 'User'}!</h1>
-        <h2 className="text-lg mb-6">Here are the users and their last login details:</h2>
+        <h2 className="text-lg mb-6">
+  There are {usersData.length} users in the system.
+</h2>
+<h3 className="text-md mb-4">
+  The users belong to {uniqueNationalities} nationalities. Below are their last login details:
+</h3>
+
 
         {loading ? (
           <div className="flex justify-center items-center h-64">
