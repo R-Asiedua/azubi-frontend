@@ -39,6 +39,9 @@ function LoginPage() {
           
         });
 
+        localStorage.setItem('user', JSON.stringify(userData.name));
+        localStorage.setItem('email', JSON.stringify(userData.email));
+        // setUser(userData.name) //
         localStorage.setItem('authToken', userData.token);
         navigate('/dashboard'); 
       }

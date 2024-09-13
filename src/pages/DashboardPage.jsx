@@ -6,6 +6,7 @@ import { UserContext } from '../context/userContext';
 
 function DashboardPage() {
   const { user } = useContext(UserContext);
+  console.log("User from dashboard:", user);
   const navigate = useNavigate();
   const [usersData, setUsersData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -46,10 +47,12 @@ function DashboardPage() {
   }, []);
 
   const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('email');
     localStorage.removeItem('authToken');
     navigate('/login');
   };
-
+  // console.log("User state in dashboard33:", user);
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar fluid={true} rounded={true} className="px-40">
@@ -95,7 +98,7 @@ function DashboardPage() {
       <div className="p-4">
         <h1 className="text-xl font-semibold mb-4">Welcome, {user ? user.name : 'User'}!</h1>
         <h2 className="text-lg mb-6">
-  There are {usersData.length} users in the system.
+  There are {usersData.length} users in the system. 
 </h2>
 <h3 className="text-md mb-4">
   The users belong to {uniqueNationalities} nationalities. Below are their last login details:
