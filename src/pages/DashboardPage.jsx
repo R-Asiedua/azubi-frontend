@@ -16,7 +16,7 @@ function DashboardPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'https://l2um9p5p9h.execute-api.eu-west-2.amazonaws.com/user-data/userdata'
+          'https://96a113ima8.execute-api.us-east-1.amazonaws.com/userdata_API/userdata'
         ); // replace with your user data api endpoint
         const data = response.data;
 

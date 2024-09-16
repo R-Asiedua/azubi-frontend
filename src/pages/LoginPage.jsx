@@ -16,7 +16,7 @@ function LoginPage() {
     setLoading(true); 
 
     try {
-      const response = await axios.post('https://gyojqb3oge.execute-api.eu-west-2.amazonaws.com/login-dev/login', // replace with your  login  api endpoint
+      const response = await axios.post('https://0nfe6hvhv6.execute-api.us-east-1.amazonaws.com/API_new_stage/login', // replace with your  login  api endpoint
         
         {
         username,

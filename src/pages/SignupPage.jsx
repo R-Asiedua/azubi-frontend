@@ -29,7 +29,7 @@ function SignupPage() {
     setError(null);
 
     try {
-      const response = await axios.post('https://gyojqb3oge.execute-api.eu-west-2.amazonaws.com/login-dev/register', formData); // replace with your  signup  api endpoint
+      const response = await axios.post('https://0nfe6hvhv6.execute-api.us-east-1.amazonaws.com/API_new_stage/register', formData); // replace with your  signup  api endpoint
       console.log(formData);
 
       console.log("QWERTYUI");
